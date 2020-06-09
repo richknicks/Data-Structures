@@ -76,9 +76,37 @@ class LinkedList:
         self.head = self.head.get_next()
         return value
 
+    def remove_tail(self):
+        if not self.head:
+            return None
+
+        if self.head is self.tail:
+            value = self.head.get_value()
+            self.head = None
+            self.tail = None
+            return value
+
+        current = self.head
+
+        while current.get_next() is not self.tail:
+            current = current.get_next()
+
+        value = self.tail.get_value()
+        self.tail = current
+        return value
+
     def contains(self, value):
         if not self.head:
             return False
+
+        # Recursive solution
+        # def search(node):
+        #   if node.get_value() == value:
+        #     return True
+        #   if not node.get_next():
+        #     return False
+        #   return search(node.get_next())
+        # return search(self.head)
 
         # get a reference to the node we're currently at; update this as we traverse the list
         current = self.head
@@ -92,42 +120,59 @@ class LinkedList:
         # if we've gotten here, then the target node isn't in our list
         return False
 
-
-class Stack:
-    def __init__(self):
-        self.size = 0
-        # self.storage = 0
-        self.storage = []
-
-    def __len__(self):
-        return len(self.storage)
-
-    def push(self, value):
-        return self.storage.append(value)
-
-    def pop(self):
-        # check if empty
-        if len(self.storage) is not 0:
-            return self.storage.pop(-1)
-        else:
+    def get_max(self):
+        if not self.head:
             return None
+        # reference to the largest value we've seen so far
+        max_value = self.head.get_value()
+        # reference to our current node as we traverse the list
+        current = self.head.get_next()
+        # check to see if we're still at a valid list node
+        while current:
+            # check to see if the current value is greater than the max_value
+            if current.get_value() > max_value:
+                # if so, update our max_value variable
+                max_value = current.get_value()
+            # update the current node to the next node in the list
+            current = current.get_next()
+        return max_value
 
 
 # class Stack:
 #     def __init__(self):
 #         self.size = 0
-#         self.storage = LinkedList()
-#         # self.storage = ?
+#         # self.storage = 0
+#         self.storage = []
 
 #     def __len__(self):
-#         return self.size
+#         return len(self.storage)
 
 #     def push(self, value):
-#         self.storage.add_to_tail(value)
-#         self.size += 1
+#         return self.storage.append(value)
 
 #     def pop(self):
-#         if self.size == 0:
+#         # check if empty
+#         if len(self.storage) is not 0:
+#             return self.storage.pop(-1)
+#         else:
 #             return None
-#         self.size -= 1
-#         return self.storage.remove.tail()
+
+
+class Stack:
+    def __init__(self):
+        self.size = 0
+        self.storage = LinkedList()
+        # self.storage = ?
+
+    def __len__(self):
+        return self.size
+
+    def push(self, value):
+        self.storage.add_to_tail(value)
+        self.size += 1
+
+    def pop(self):
+        if self.size == 0:
+            return None
+        self.size -= 1
+        return self.storage.remove_tail()
