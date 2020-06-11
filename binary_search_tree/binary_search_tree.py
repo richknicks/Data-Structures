@@ -29,7 +29,7 @@ class BSTNode:
             if self.right is None:
                 # assign to right node if true
                 self.right = BSTNode(value)
-                # else recursively move down one node and to the right
+                # else (keep searching) recursively move down one node and to the right
             else:
                 self.right.insert(value)
             # else place on the left
@@ -38,7 +38,7 @@ class BSTNode:
             if self.left is None:
                 # assign to left node if true
                 self.left = BSTNode(value)
-            # else recursively move down one node and to the left
+            # else (keep searching) recursively move down one node and to the left
             else:
                 self.left.insert(value)
 
@@ -88,16 +88,34 @@ class BSTNode:
     # Print all the values in order from low to high
     # Hint:  Use a recursive, depth first traversal
     def in_order_print(self, node):
-        pass
+        # Lowest number always furthest to the left
+        # use recursion
+        # base case
+        values = []
+        if node is None:
+            return
+        elif:
+        # recursive case
+        self.in_order_print(self.left)
+        # build up call stack to see what happens
 
     # Print the value of every node, starting with the given node,
     # in an iterative breadth first traversal
     def bft_print(self, node):
+        # no recursion only iterative with while loop that checks size of queue
+        # have pointer value the updates at the beginning of each loop
+        # use queue start with root node
+
         pass
 
     # Print the value of every node, starting with the given node,
     # in an iterative depth first traversal
     def dft_print(self, node):
+        # use a stack
+        # start stack with root node
+        # use while loop that checks stack size and use pointer that updates at
+        # beginning of each loop
+
         pass
 
     # Stretch Goals -------------------------
